@@ -12,6 +12,7 @@ EmployeeRecord::EmployeeRecord()
 	strcpy(m_sLastName, "");
 	m_iDeptID = 0;
 	m_dSalary = 0.0;
+	m_pCustomerList = new CustomerList();
 }
 
 EmployeeRecord::EmployeeRecord(int ID, char* fName, char* lName, int dept, double sal)
@@ -22,12 +23,13 @@ EmployeeRecord::EmployeeRecord(int ID, char* fName, char* lName, int dept, doubl
 	strcpy(m_sLastName, lName);
 	m_iDeptID = dept;
 	m_dSalary = sal;
+	m_pCustomerList = new CustomerList();
 }
 
 EmployeeRecord::~EmployeeRecord()
 {
+	delete m_pCustomerList;
 }
-
 
 int EmployeeRecord::getID()
 {	
@@ -56,10 +58,10 @@ void EmployeeRecord::setName(char* fName, char* lName)
 	strcpy(m_sLastName, lName);
 }
 
-void EmployeeRecord::getDept(int& d)
+int EmployeeRecord::getDept()
 {
 	cout << "Called EmployeeRecord::getDept()" << endl;
-	d = m_iDeptID;
+	return m_iDeptID;
 }
 
 void EmployeeRecord::setDept(int d)
@@ -68,10 +70,10 @@ void EmployeeRecord::setDept(int d)
 	m_iDeptID = d;
 }
 
-void EmployeeRecord::getSalary(double* sal)
+double EmployeeRecord::getSalary()
 {
 	cout << "Called EmployeeRecord::getSalary()" << endl;
-	*sal =  m_dSalary;
+	return m_dSalary;
 }
 
 void EmployeeRecord::setSalary(double sal)
@@ -90,3 +92,10 @@ void EmployeeRecord::printRecord()
 	cout << "Employee Salary: " << m_dSalary << endl;
 	cout << "###################################################" << endl;
 }
+
+CustomerList* EmployeeRecord::getCustomerList()
+{
+	return m_pCustomerList;
+}
+
+

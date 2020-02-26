@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomerList.h" />
     <ClInclude Include="EmployeeRecord.h" />
+    <ClInclude Include="Store.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CustomerList.cpp" />
     <ClCompile Include="EmployeeRecord.cpp" />
-    <ClCompile Include="EmployeeRecordTester.cpp" />
+    <ClCompile Include="tester.cpp" />
+    <ClCompile Include="Store.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

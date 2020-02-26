@@ -1,4 +1,5 @@
 #pragma once
+#include "CustomerList.h"
 class EmployeeRecord
 {
 private:
@@ -7,6 +8,7 @@ private:
 	char m_sFirstName[32];
 	int m_iDeptID;
 	double m_dSalary;
+	CustomerList*  m_pCustomerList;
 public:
 	EmployeeRecord();
 	EmployeeRecord(int ID, char* fName, char* lName, int dept, double sal);
@@ -15,9 +17,10 @@ public:
 	void setID(int ID);
 	void getName(char* fName, char* lName);
 	void setName(char* fName, char* lName);
-	void getDept(int& d);
+	int getDept();
 	void setDept(int d);
-	void getSalary(double* sal);
+	double getSalary();
 	void setSalary(double sal);
 	void printRecord();
+	CustomerList* getCustomerList();
 };

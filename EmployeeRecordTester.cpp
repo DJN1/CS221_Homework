@@ -1,5 +1,6 @@
 #include <iostream>
 #include "EmployeeRecord.h"
+#include "CustomerList.h"
 
 using namespace std;
 
@@ -7,34 +8,42 @@ using namespace std;
 
 int main()
 {
+	cout << "called main" << endl;
+	testEmployee();
+	testCustomerList();
+	return 0;
+}
+
+void testEmployee()
+{
 	int employeeDept = 0;
 	int employeeID;
 	char employeeFName[32];
 	char employeeLName[32];
 	char* employeeFNamePtr = employeeFName;
 	char* employeeLNamePtr = employeeLName;
-	int& employeeDeptRef = employeeDept;
 	char newEmployeeFirstName[] = "Jerry";
 	char newEmployeeLastName[] = "Smith";
 	char* newEmployeeFirstNamePtr = newEmployeeFirstName;
 	char* newEmployeeLastNamePtr = newEmployeeLastName;
 	double employeeSalary = 0;
-	double* employeeSalaryPtr = &employeeSalary;
 	// function tests
 	EmployeeRecord rec = EmployeeRecord(0, newEmployeeFirstNamePtr, newEmployeeLastNamePtr, 1, 200000);
-	employeeID = rec.getID();
+	cout << "Employee ID: " << rec.getID() << endl;
 	rec.setID(9);
 	rec.getName(employeeFNamePtr, employeeLNamePtr);
 	cout << "Employee first name: ";
 	cout << endl << "Employee last name: ";
 	rec.setName(newEmployeeFirstNamePtr, newEmployeeLastNamePtr);
-	rec.getDept(employeeDeptRef);
-	cout << endl << "Employee dept: " << employeeDeptRef << endl;
+	cout << "Employee Department: " << rec.getDept() << endl;
 	rec.setDept(3);
-	rec.getSalary(employeeSalaryPtr);
-	cout << "Employee salary: " << *employeeSalaryPtr << endl;
+	cout << "Employee salary: " << rec.getSalary() << endl;
 	rec.setSalary(100000);
 	rec.printRecord();
-	system("pause");
-	return 0;
+}
+
+void testCustomerList()
+{
+	CustomerList CL = new CustomerList();
+	CL.printStoresInfo();
 }
