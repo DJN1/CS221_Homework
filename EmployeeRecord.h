@@ -9,7 +9,10 @@ private:
 	int m_iDeptID;
 	double m_dSalary;
 	CustomerList*  m_pCustomerList;
+
 public:
+	EmployeeRecord* m_pLeft;
+	EmployeeRecord* m_pRight;
 	EmployeeRecord();
 	EmployeeRecord(int ID, char* fName, char* lName, int dept, double sal);
 	~EmployeeRecord();
@@ -23,4 +26,6 @@ public:
 	void setSalary(double sal);
 	void printRecord();
 	CustomerList* getCustomerList();
+	void removeCustomerList();
+	void destroyCustomerList();
 };

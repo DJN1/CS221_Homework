@@ -2,6 +2,8 @@
 #include "EmployeeRecord.h"
 #include "CustomerList.h"
 #include "Store.h"
+#include "EmployeeDatabase.h"
+
 
 using namespace std;
 
@@ -87,13 +89,39 @@ void testCustomerList()
 
 
 
-
+void testEmployeeDatabase()
+{
+	EmployeeDatabase* db = new EmployeeDatabase();
+	EmployeeRecord* temp = new EmployeeRecord();
+	EmployeeRecord* temp2 = new EmployeeRecord();
+	int newID = 1;
+	char newFName[] = "John";
+	char newLName[] = "Fettersmith";
+	char* newFNamePtr = newFName;
+	char* newLNamePtr = newLName;
+	int newDept = 184;
+	double newSal = 54000.50;
+	EmployeeRecord* addEmp = new EmployeeRecord(newID, newFNamePtr, newLNamePtr, newDept, newSal);
+	char file[] = "prog3Data.txt";
+	char* filePtr = file;
+	db->buildDatabase(filePtr);
+	db->printEmployeeRecords();
+	temp = db->getEmployee(1234);
+	temp->printRecord();
+	db->addEmployee(addEmp);
+	db->printEmployeeRecords();
+	temp2 = db->removeEmployee(1);
+	db->removeEmployee(1234);
+	db->removeEmployee(9876);
+	db->removeEmployee(5678);
+	temp2->printRecord();
+	db->printEmployeeRecords();
+}	
 
 
 int main()
 {
-	testEmployee();
+	testEmployeeDatabase();
 	cout << endl << "------------------------------------------------------------------------------------------------------------------------" << endl;
-	testCustomerList();
 	return 0;
 }

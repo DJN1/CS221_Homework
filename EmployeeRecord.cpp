@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <iomanip>
 #include "EmployeeRecord.h"
 
 using namespace std;
@@ -13,6 +14,8 @@ EmployeeRecord::EmployeeRecord()
 	m_iDeptID = 0;
 	m_dSalary = 0.0;
 	m_pCustomerList = new CustomerList();
+	m_pLeft = NULL;
+	m_pRight = NULL;
 }
 
 EmployeeRecord::EmployeeRecord(int ID, char* fName, char* lName, int dept, double sal)
@@ -24,11 +27,21 @@ EmployeeRecord::EmployeeRecord(int ID, char* fName, char* lName, int dept, doubl
 	m_iDeptID = dept;
 	m_dSalary = sal;
 	m_pCustomerList = new CustomerList();
+	m_pLeft = NULL;
+	m_pRight = NULL;
 }
 
 EmployeeRecord::~EmployeeRecord()
 {
-	delete m_pCustomerList;
+	if (m_pCustomerList != NULL)
+	{
+		removeCustomerList();
+		destroyCustomerList();
+	}
+	else
+	{
+		destroyCustomerList();
+	}
 }
 
 int EmployeeRecord::getID()
@@ -84,13 +97,11 @@ void EmployeeRecord::setSalary(double sal)
 
 void EmployeeRecord::printRecord()
 {
-	cout << "################# EMPLOYEE RECORD #################" << endl;
-	cout << "Employee ID: " << m_iEmployeeID << endl;
-	cout << "Employee First Name: " << m_sFirstName << endl;
-	cout << "Employee Last Name: " << m_sLastName << endl;
-	cout << "Employee Department: " << m_iDeptID << endl;
-	cout << "Employee Salary: " << m_dSalary << endl;
-	cout << "###################################################" << endl;
+	cout << setw(10) << m_iEmployeeID;
+	cout << setw(33) << m_sFirstName;
+	cout << setw(33) << m_sLastName;
+	cout << setw(8) << m_iDeptID;
+	cout << setw(11) << "$" << m_dSalary << endl;
 }
 
 CustomerList* EmployeeRecord::getCustomerList()
@@ -98,4 +109,13 @@ CustomerList* EmployeeRecord::getCustomerList()
 	return m_pCustomerList;
 }
 
+void EmployeeRecord::removeCustomerList()
+{
+	m_pCustomerList = NULL;
+}
 
+void EmployeeRecord::destroyCustomerList()
+{
+	delete m_pCustomerList;
+	m_pCustomerList = NULL;
+}
